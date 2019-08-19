@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Room</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/room.js}"></script>
+
+
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/room/registrar}" method="post" th:object="${room}">
+			<div class="form-group">
+				<label for="idroom">ID:</label> <input type="text"
+					class="form-control" th:field="*{idRoom}"></input>
+
+				<div class="form-group">
+					<label for="nombre">NOMBRE:</label> <input type="text"
+						th:field="*{nameRoom}" class="form-control" id="nombre"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('nameRoom')}" th:errors="*{nameRoom}"></div>
+
+				</div>
+								<div class="form-group">
+					<label for="nombre">CAMAS:</label> <input type="text"
+						th:field="*{numBeds}" class="form-control" id="nombre"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('numBeds')}" th:errors="*{numBeds}"></div>
+
+				</div>
+												<div class="form-group">
+					<label for="nombre">AFORO:</label> <input type="text"
+						th:field="*{numGauging}" class="form-control" id="nombre"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('numGauging')}" th:errors="*{numGauging}"></div>
+
+				</div>
+												<div class="form-group">
+					<label for="nombre">PRECIO:</label> <input type="text"
+						th:field="*{numPrice}" class="form-control" id="nombre"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('numPrice')}" th:errors="*{numPrice}"></div>
+
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/room/listar" class="btn btn-danger">Cancelar</a>
+
+		</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

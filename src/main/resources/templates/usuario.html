@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>USUARIOS</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/room.js}"></script>
+
+
+
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header"></div>
+	<div class="content-wrapper">
+		<div class="container-fluid">
+
+			<div class="container py-4">
+
+
+				<div class="card bg-light col-sm-11">
+
+
+					<div class="card-body">
+
+						<form th:action="@{/user/register}" method="post"
+							th:object="${usuario}">
+
+							<div class="form-group">
+								<label for="id">ID:</label> <input type="text"
+									class="form-control" th:field="*{id}" id="id"></input>
+							</div>
+
+
+							<div class="form-group">
+								<label for="nombre">Nombre:</label> <input type="text"
+									th:field="*{nombre}" class="form-control" id="nombre"></input>
+								<div class="alert alert-danger"
+									th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+							</div>
+
+							<div class="form-group">
+								<label for="clave">Clave:</label> <input type="text"
+									th:field="*{clave}" class="form-control" id="clave"></input>
+								<div class="alert alert-danger"
+									th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}"></div>
+							</div>
+
+						<div class="form-group">
+								<label for="tipo">Tipo Role:</label> <input type="text"
+									th:field="*{tipo}" class="form-control" id="tipo"></input>
+								<div class="alert alert-danger"
+									th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></div>
+							</div>
+
+							<div class="form-group">
+								<label for="estado">Estado:</label> <input type="text"
+									th:field="*{estado}" class="form-control" id="estado"></input>
+								<div class="alert alert-danger"
+									th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
+							</div>
+							<button type="submit" class="btn btn-primary">Aceptar</button>
+							<a href="/user/list" class="btn btn-danger">Cancelar</a>
+
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer :: footer"></div>
+	<!-- Bootstrap core JavaScript-->
+	<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<!-- Core plugin JavaScript-->
+	<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+	<!-- Page level plugin JavaScript-->
+	<script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+	<script th:src="@{/vendor/datatables/jquery.dataTables.js}"></script>
+	<script th:src="@{/vendor/datatables/dataTables.bootstrap4.js}"></script>
+	<!-- Custom scripts for all pages-->
+	<script th:src="@{/js/sb-admin.min.js}"></script>
+	<!-- Custom scripts for this page-->
+	<script th:src="@{/js/sb-admin-datatables.min.js}"></script>
+	<script th:src="@{/js/sb-admin-charts.min.js}"></script>
+</body>
+</html>

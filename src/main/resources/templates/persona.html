@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>PERSONA</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/imagenes/favicon-32x32.png"/>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+
+
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+	<form th:action="@{/persona/registrar}" method="post"
+		th:object="${persona}" enctype="multipart/form-data">
+		<div class="form-group">
+			<label for="idpersona">ID:</label> <input type="text"
+				class="form-control" th:field="*{idPersona}"></input>
+		</div>
+		<div class="form-group">
+			<label for="dni">DNI:</label> <input type="text" class="form-control"
+				th:field="*{dniPersona}" id="dni" />
+			<div class="alert alert-danger"
+				th:if="${#fields.hasErrors('dniPersona')}" th:errors="*{dniPersona}"></div>
+
+		</div>
+
+		<div class="form-group">
+			<label for="nombre">NOMBRE:</label> <input type="text"
+				th:field="*{namePersona}" class="form-control" id="nombre"></input>
+			<div class="alert alert-danger"
+				th:if="${#fields.hasErrors('namePersona')}"
+				th:errors="*{namePersona}"></div>
+
+		</div>
+		<div class="form-group">
+			<label for="fechanacimiento">FECHA DE NACIMIENTO:</label> <input
+				type="date" th:field="*{birthDatePersona}" class="form-control"
+				id="fechanacimiento"></input>
+			<div class="alert alert-danger"
+				th:if="${#fields.hasErrors('birthDatePersona')}"
+				th:errors="*{birthDatePersona}"></div>
+
+		</div>
+
+
+		<div class="form-group">
+			<label for="direccion">EMAIL:</label> <input type="email"
+				class="form-control" th:field="*{emailPersona}" id="direccion"></input>
+			<div class="alert alert-danger"
+				th:if="${#fields.hasErrors('emailPersona')}"
+				th:errors="*{emailPersona}"></div>
+				
+				
+				<div class="form-group row">
+						<label for="file" class="col-sm-2 col-form-label ">Foto:</label>
+						<div class="col-sm-6">
+							<input type="file" name="file" class="form-control" />
+						</div>
+					</div>
+				
+
+
+			<label for="ciudad" class=" col-sm-2 col-form-label"> Ciudad:</label>
+			<select class="form-control" th:field="*{city.idCity}">
+				<option th:each="ci: ${listaCitys}" th:value="${ci.idCity}"
+					th:text="${ci.nameCity}"
+					th:selected="(${ci.idCity} == *{city.idCity})"></option>
+					</select>
+					
+		</div>
+		<button type="submit" class="btn btn-primary">AceptarPersona</button>
+		<a href="/persona/listar" class="btn btn-danger">Cancelar</a>
+
+	</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

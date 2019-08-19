@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>USUARIOS</title>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	
+	<div class="container">
+		<form id="myform">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<a th:href="@{/user/goRegister}" id="add-row" type="button"
+						class="btn btn-primary btn-md left-block"> <span
+						class="glyphicon glyphicon-plus"></span> Agregar Usuario
+					</a>
+					<table class="table table-bordered table-hover table-striped"
+						id="tab_logic">
+						<thead>
+							<tr>
+								<th class="text-center">CODIGO</th>
+								<th class="text-center">NOMBRE</th>
+								<th class="text-center">CLAVE</th>
+								<th class="text-center">TIPO ROLE</th>
+								<th class="text-center">ESTADO</th>
+
+								<th class="text-center">ELIMINAR</th>
+								<th class="text-center">MODIFICAR</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="r: ${listaUsuario}">
+								<td th:text="${r.id}"></td>
+								<td th:text="${r.nombre}"></td>
+								<td th:text="${r.clave}"></td>
+								<td th:text="${r.tipo}"></td>
+								<td th:text="${r.estado}"></td>
+								<td align="center"><a th:href="@{/user/remove?id=}+${r.id}"><img
+										src="https://img.icons8.com/material/35/000000/waste.png"></img></a></td>
+								<td align="center"><a th:href="@{/user/modify?id=}+${r.id}"><img
+										src="https://img.icons8.com/material/35/000000/edit-file.png"></img></a></td>
+
+
+							</tr>
+						</tbody>
+
+					</table>
+
+					<a style="border-bottom-color: green" th:href="@{/bienvenido}"
+						id="add-row" type="button"
+						class="btn btn-primary btn-md left-block"> <span
+						class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+					</a>
+					<div th:replace="fragments/footer :: footer"></div>
+					<p th:text="${Error}"></p>
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

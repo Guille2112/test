@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Checkin</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/checkin/registrar}" method="post" th:object="${checkin}">
+			<div class="form-group">
+				<label for="idcheckin">NUMERO:</label> <input type="text"
+					class="form-control" th:field="*{idCheckin}"></input>
+					
+	<div class="form-group">
+			<label for="codigo">CODIGO :</label> <input type="text"
+				th:field="*{nameCheckin}" class="form-control" id="codigo"></input>
+			<div class="alert alert-danger"
+				th:if="${#fields.hasErrors('nameCheckin')}"
+				th:errors="*{nameCheckin}"></div>
+				</div>
+			<div class="form-group">
+			<label for="fecharserva">FECHA INGRESO :</label> <input type="date"
+				th:field="*{dateCheckin}" class="form-control" id="fechareserva"></input>
+			<div class="alert alert-danger"
+				th:if="${#fields.hasErrors('dateCheckin')}"
+				th:errors="*{dateCheckin}"></div>
+				
+
+		</div>
+			<label for="reserva" class=" col-sm-2 col-form-label">
+			RESERVA:</label> <select class="form-control" th:field="*{reservation.idReservation}">
+			<option th:each="rl: ${listaReservations}" th:value="${rl.idReservation}"
+				th:text="${rl.idReservation}"
+				th:selected="(${rl.idReservation} == *{reservation.idReservation})"></option>
+		</select>
+		
+		
+		
+		
+							
+			</div>
+			<button type="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/checkin/listar" class="btn btn-danger">Cancelar</a>
+
+		</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

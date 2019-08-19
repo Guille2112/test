@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Checkout</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/checkout/registrar}" method="post" th:object="${checkout}">
+			<div class="form-group">
+				<label for="idcheckout">NUMERO:</label> <input type="text"
+					class="form-control" th:field="*{idCheckout}"></input>
+					
+	<div class="form-group">
+			<label for="codigo">CODIGO :</label> <input type="text"
+				th:field="*{nameCheckout}" class="form-control" id="codigo"></input>
+			<div class="alert alert-danger"
+				th:if="${#fields.hasErrors('nameCheckout')}"
+				th:errors="*{nameCheckout}"></div>
+				</div>
+			<div class="form-group">
+			<label for="fechasalida">FECHA SALIDA :</label> <input type="date"
+				th:field="*{dateCheckout}" class="form-control" id="fechasalida"></input>
+			<div class="alert alert-danger"
+				th:if="${#fields.hasErrors('dateCheckout')}"
+				th:errors="*{dateCheckout}"></div>
+				</div>
+					<div class="form-group">
+			<label for="dias">DIAS:</label> <input type="text"
+				th:field="*{Qdays}" class="form-control" id="dias"></input>
+			<div class="alert alert-danger"
+				th:if="${#fields.hasErrors('Qdays')}"
+				th:errors="*{Qdays}"></div>							
+
+		</div>
+			<label for="fecharserva" class=" col-sm-2 col-form-label">
+			FECHA DE INGRESO :</label> <select class="form-control" th:field="*{checkin.idCheckin}">
+			<option th:each="rci: ${listaCheckins}" th:value="${rci.idCheckin}"
+				th:text="${rci.dateCheckin}"
+				th:selected="(${rci.idCheckin} == *{checkin.idCheckin})"></option>
+		</select>
+		
+		<label for="reserva" class=" col-sm-2 col-form-label">
+			RESERVA:</label> <select class="form-control" th:field="*{reservation.idReservation}">
+			<option th:each="rl: ${listaReservations}" th:value="${rl.idReservation}"
+				th:text="${rl.idReservation}"
+				th:selected="(${rl.idReservation} == *{reservation.idReservation})"></option>
+		</select>
+		
+		
+		
+		
+							
+			</div>
+			<button type="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/checkout/listar" class="btn btn-danger">Cancelar</a>
+
+		</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

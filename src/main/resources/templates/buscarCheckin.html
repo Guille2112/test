@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Buscar Checkin</title>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+	
+		<form th:action="@{/checkin/buscar}" method="post"
+			th:object="${checkin}">
+	
+	
+			<div class="form-group">
+				<label for="nameCheckin">Buscar:</label> <input type="text"
+					class="form-control" th:field="*{nameCheckin}" id="nameCheckin"></input>
+			</div>
+	
+			<button type="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/checkin/listar" class="btn btn-danger">Cancelar</a>
+
+		</form>
+
+		<table class="table table-bordered table-hover table-striped"
+			id="tab_logic">
+			<thead>
+				<tr>
+					<th class="text-center">NUMERO</th>
+					<th class="text-center">CODIGO</th>
+
+					<th class="text-center">FECHA DE INGRESO</th>
+					<th class="text-center">RESERVACION</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="per: ${listaCheckins}">
+					<td th:text="${per.idCheckin}"></td>
+					<td th:text="${per.nameCheckin}"></td>
+					<td th:text="${#dates.format(per.dateCheckin,'dd/MM/yyyy')}"></td>
+					<td th:text="${per.reservation.idReservation}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		<div th:if="${mensaje}" class="alert alert-info">
+			<p th:text="${mensaje}"></p>
+		</div>
+
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

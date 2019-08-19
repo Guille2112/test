@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Buscar Room</title>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/room/buscar}" method="post" th:object="${room}">
+
+
+			<div class="form-group">
+				<label for="nameRoom">Buscar:</label> <input type="text"
+					class="form-control" th:field="*{nameRoom}" id="nameRoom"></input>
+			</div>
+			<button type="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/room/listar" class="btn btn-danger">Cancelar</a>
+
+		</form>
+
+		<table class="table table-bordered table-hover table-striped"
+			id="tab_logic">
+			<thead>
+				<tr>
+					<th class="text-center">CODIGO</th>
+					<th class="text-center">NOMBRE DE LA HABITACION</th>
+					<th class="text-center"> NUMERO DE CAMAS</th>
+					<th class="text-center">AFORO</th>
+					<th class="text-center">PRECIO</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="rac: ${listaRoom}">
+					<td th:text="${rac.idRoom}"></td>
+					<td th:text="${rac.nameRoom}"></td>
+					<td th:text="${rac.numBeds}"></td>
+					<td th:text="${rac.numGauging}"></td>
+					<td th:text="${rac.numPrice}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		<div th:if="${mensaje}" class="alert alert-info">
+			<p th:text="${mensaje}"></p>
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
