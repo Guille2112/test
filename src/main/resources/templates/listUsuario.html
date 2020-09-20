@@ -5,6 +5,7 @@
 <title>USUARIOS</title>
 <script type="text/javascript"
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+		<link rel="icon" type="image/png" sizes="32x32" href="/imagenes/favicon-32x32.png"/>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css"></link>
@@ -27,9 +28,9 @@
 						id="tab_logic">
 						<thead>
 							<tr>
-								<th class="text-center">CODIGO</th>
-								<th class="text-center">NOMBRE</th>
-								<th class="text-center">CLAVE</th>
+								<th class="text-center">ID</th>
+								<th class="text-center">USERNAME</th>
+								<th class="text-center">PASSWORD</th>
 								<th class="text-center">TIPO ROLE</th>
 								<th class="text-center">ESTADO</th>
 
@@ -61,7 +62,7 @@
 						class="btn btn-primary btn-md left-block"> <span
 						class="glyphicon glyphicon-circle-arrow-left"></span> Volver
 					</a>
-					<div th:replace="fragments/footer :: footer"></div>
+				
 					<p th:text="${Error}"></p>
 				</div>
 			</div>

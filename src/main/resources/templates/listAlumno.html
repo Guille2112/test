@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Lista de alumnos</title>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+	<link rel="icon" type="image/png" sizes="32x32" href="/imagenes/favicon-32x32.png"/>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+		<form id="myform">
+					<div class="row clearfix">
+				<div class="col-md-12 column" >
+					<a  style="border-bottom-color: green" th:href="@{/alumno/irRegistrar}" id="add-row" type="button"
+						class="btn btn-primary btn-md left-block"> <span
+						class="glyphicon glyphicon-plus" ></span> Agregar Alumno
+					</a>
+				
+					<div th:if= "${success eq true}" class="alert alert-success">SE REGISTRO ALUMNO CON EXITO</div>
+		            <div th:if= "${info eq true}" class="alert alert-info">SE ACTUALIZO ALUMNO</div>
+		            <div th:if= "${warning eq true}" class="alert alert-warning">SE ELIMINO EL ALUMNO</div> 
+		            <div th:if= "${danger eq true}" class="alert alert-danger">REGISTRO ASOCIADO</div> 
+		
+				<!-- 
+					<a  style="border-bottom-color: green" th:href="@{/alumno/irBuscar}" id="add-row" type="button"
+						class="btn btn-primary btn-md left-block"> <span
+						class="glyphicon glyphicon-search" ></span> 
+					</a>
+			    -->
+					<table class="table table-bordered table-hover table-striped"
+						id="tab_logic">
+						<thead>
+							<tr>
+								<th class="text-center">ID</th>
+								<th class="text-center">NOMBRES</th>
+								<th class="text-center">APELLIDOS</th>
+								<th class="text-center">DNI</th>
+								<th class="text-center">OPERACIÓN</th>
+								<th class="text-center">OPERACIÓN</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="rac: ${listaAlumnos}">
+								<td th:text="${rac.idAlumno}"></td>
+								<td th:text="${rac.nameAlumno}"></td>
+								<td th:text="${rac.apellidoAlumno}"></td>
+								<td th:text="${rac.dniAlumno}"></td>
+								<td><a th:href="@{/alumno/eliminar?id=}+${rac.idAlumno}">Eliminar</a></td>
+								<td><a th:href="@{'/alumno/modificar/' + ${rac.idAlumno}}">Modificar</a></td>
+							</tr>
+						</tbody>
+
+					</table>
+					
+				</div>
+			</div>
+					
+		</form>
+	</div>
+
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

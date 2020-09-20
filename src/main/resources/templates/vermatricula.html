@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Insertar matricula</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<link rel="icon" type="image/png" sizes="32x32" href="/imagenes/favicon-32x32.png"/>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/vermatricula.js}"></script>
+
+
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	
+	
+
+	<form th:action="@{/matricula/registrar}" method="post" th:object="${matricula}" >
+		
+		<div class="form-group">
+			<label for="idmatricula">ID de matricula:</label> <input type="text"
+				class="form-control" th:field="*{idMatricula}"></input>
+		</div>
+	
+
+		<label for="alumno" class=" col-sm-2 col-form-label"> Alumno:</label> <select
+			class="form-control" th:field="*{alumno.idAlumno}">
+			<option th:each="rr: ${listaAlumnos}" th:value="${rr.idAlumno}"
+				th:text="${rr.nameAlumno}"
+				th:selected="(${rr.idAlumno} == *{alumno.idAlumno})"></option>
+		</select> 
+		
+		
+		<label for="seccion" class=" col-sm-2 col-form-label">
+			Seccion:</label> <select class="form-control" th:field="*{seccion.idSeccion}">
+			<option th:each="re: ${listaSecciones}" th:value="${re.idSeccion}"
+				th:text="${re.nameSeccion}"
+				th:selected="(${re.idSeccion} == *{seccion.idSeccion})"></option>
+		</select>
+
+		
+		  <div th:if= "${danger eq true}" class="alert alert-success">MAXIMO 10 ALUMNO POR CURSO - NO SE PUEDE MATRICULAR 2 VECES EN EL MISMO CURSO</div>
+
+
+		<button type="submit" class="btn btn-primary">AceptarMatricula</button>
+		<a href="/matricula/listar" class="btn btn-danger">Cancelar</a>
+
+	</form>
+
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

@@ -4,6 +4,7 @@
 <meta charset="ISO-8859-1"></meta>
 <title>USUARIOS</title>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<link rel="icon" type="image/png" sizes="32x32" href="/imagenes/favicon-32x32.png"/>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css"></link>
@@ -39,28 +40,29 @@
 
 
 							<div class="form-group">
-								<label for="nombre">Nombre:</label> <input type="text"
+								<label for="nombre">USERNAME:</label> <input type="text" pattern="[a-zA-Z0-9]+" title="Solo se admiten letras y mun"
 									th:field="*{nombre}" class="form-control" id="nombre"></input>
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 							</div>
 
 							<div class="form-group">
-								<label for="clave">Clave:</label> <input type="text"
+								<label for="clave">PASSWORD:</label> <input type="text" pattern="[a-zA-Z0-9]+" title="Solo se admiten letras y mun"
 									th:field="*{clave}" class="form-control" id="clave"></input>
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}"></div>
 							</div>
 
 						<div class="form-group">
-								<label for="tipo">Tipo Role:</label> <input type="text"
-									th:field="*{tipo}" class="form-control" id="tipo"></input>
-								<div class="alert alert-danger"
-									th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></div>
+								<label for="tipo">TIPO ROLE:</label>
+								<select name="tipo" th:field="*{tipo}" class="form-control" id="tipo">
+								<option value="ROLE_ADMIN"> ROLE_ADMIN </option>
+								<option value="ROLE_AJUNI">ROLE_AJUNI</option>
+								</select>
 							</div>
 
 							<div class="form-group">
-								<label for="estado">Estado:</label> <input type="text"
+								<label for="estado">ESTADO:</label> <input type="text" pattern="[0-1]+" title="Solo se admiten 1 o 0"
 									th:field="*{estado}" class="form-control" id="estado"></input>
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>

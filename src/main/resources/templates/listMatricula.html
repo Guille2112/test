@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>lista matricula </title>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+		<link rel="icon" type="image/png" sizes="32x32" href="/imagenes/favicon-32x32.png"/>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+		<form id="myform">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<a th:href="@{/matricula/irRegistrar}" id="add-row" type="button"
+						class="btn btn-primary btn-md left-block"> <span
+						class="glyphicon glyphicon-plus"></span> Agregar Matricula
+					</a> 
+					
+					<div th:if= "${success eq true}" class="alert alert-success">REGISTRO DE MATRICULA CON EXITO</div>
+		            <div th:if= "${info eq true}" class="alert alert-info">REGISTRO ACTUALIZADO</div>
+		            <div th:if= "${warning eq true}" class="alert alert-warning">REGISTRO ELIMINADO</div> 
+		            <div th:if= "${danger eq true}" class="alert alert-danger">REGISTRO ASOCIADO</div> 
+
+					<table class="table table-bordered table-hover table-striped"
+						id="tab_logic">
+						<thead>
+							<tr>
+								<th class="text-center">ID</th>
+							<th class="text-center">ALUMNO</th>
+								<th class="text-center">SECCION</th>
+								<th class="text-center">NOMBRE CURSO</th>
+														
+
+								<th class="text-center">OPERACIÓN</th>
+								<th class="text-center">OPERACIÓN</th>
+					
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="per: ${listaMatriculas}">
+									<td th:text="${per.idMatricula}"></td>
+									
+								
+								<td ><a th:href="@{'/alumno/modificar/' + ${per.alumno.idAlumno}}" th:text="${per.alumno.nameAlumno}"></a></td>
+				                <td th:text="${per.seccion.nameSeccion}"></td>
+				                <td th:text="${per.seccion.nameCurso}"></td>
+								<td><a th:href="@{/matricula/eliminar?id=}+${per.idMatricula}">Eliminar</a></td>
+								<td><a th:href="@{'/matricula/modificar/' + ${per.idMatricula}}">Modificar</a></td>
+			   
+
+							</tr>
+						</tbody>
+
+					</table>
+
+				</div>
+			</div>
+		
+					<div th:if="${error}" class="alert alert-danger">
+			<p th:text="${error}"></p>
+			</div>
+		</form>
+	</div>
+
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

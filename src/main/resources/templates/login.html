@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"></meta>
-<title>Insert title here</title>
+<title>login</title>
+<link rel="icon" type="image/png" sizes="32x33" href="/imagenes/favicon-32x32.png"/>
 
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -19,12 +20,12 @@
 					<p class="alert alert-danger" th:if="${error}" th:text="${error}"></p>
 					<p class="alert alert-success" th:if="${msg}" th:text="${msg}"></p>
 
-					<h4>Welcome back.</h4>
+					<h4>EDUCA SYSTEM</h4>
 					<form th:action="@{j_spring_security_check}" method="post">
 						<input type="text" id="username" name="usuario"
-							class="form-control input-sm chat-input" placeholder="username"></input>
+							class="form-control input-sm chat-input" placeholder="USERNAME"></input>
 						<br></br> <input type="password" id="password" name="clave"
-							class="form-control input-sm chat-input" placeholder="password"></input>
+							class="form-control input-sm chat-input" placeholder="PASSWORD"></input>
 						<br></br>
 						<div class="wrapper">
 							<span class="group-btn">

@@ -6,6 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "usuario")
@@ -14,16 +18,27 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
-	@Column(name = "nombre", length = 50, nullable = false)
+	
+	@Size (min=3 ,max=40)
+	@NotEmpty(message="No puede estar vacío")
+	@NotBlank(message="No puede estar en blanco")
+	@Column(name = "nombre", length = 40, nullable = false)
 	private String nombre;
-
-	@Column(name = "clave", length = 50, nullable = false)
+	
+	@Size (min=3 ,max=40)
+	@NotEmpty(message="No puede estar vacío")
+	@NotBlank(message="No puede estar en blanco")
+	@Column(name = "clave", length = 40, nullable = false)
 	private String clave;
-
+	
+	@NotEmpty(message="No puede estar vacío")
+	@NotBlank(message="No puede estar en blanco")
 	@Column(name = "tipo", length = 20, nullable = false)
 	private String tipo;
-
+	
+	@Size (min=1 ,max=1)
+	@NotEmpty(message="No puede estar vacío")
+	@NotBlank(message="No puede estar en blanco")
 	@Column(name = "estado", length = 1, nullable = false)
 	private String estado;
 

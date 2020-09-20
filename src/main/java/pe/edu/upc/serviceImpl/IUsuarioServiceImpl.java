@@ -2,10 +2,8 @@
 package pe.edu.upc.serviceImpl;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import pe.edu.upc.dao.IUsuarioDao;
 import pe.edu.upc.entity.Usuario;
 import pe.edu.upc.service.IUsuarioService;

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>insertar docente</title>
+	<link rel="icon" type="image/png" sizes="32x32" href="/imagenes/favicon-32x32.png"/>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/docente.js}"></script>
+
+
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/docente/registrar}" method="post" th:object="${docente}">
+			<div class="form-group">
+				<label for="iddocente">ID:</label> <input type="text"
+					class="form-control" th:field="*{idDocente}"></input>
+
+				<div class="form-group">
+					<label for="nombre">NOMBRES:</label> <input type="text" pattern="[A-Za-z-_-ñ\s]+" title="Solo se admiten letras"
+						th:field="*{nameDocente}" class="form-control" id="nombre"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('nameDocente')}" th:errors="*{nameDocente}"></div>
+
+				</div>
+			</div>
+			
+			
+					<div class="form-group">
+					<label for="apellido">APELLIDOS:</label> <input type="text" pattern="[A-Za-z-_-ñ\s]+" title="Solo se admiten letras"
+						th:field="*{apellidoDocente}" class="form-control" id="apellido"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('apellidoDocente')}" th:errors="*{apellidoDocente}"></div>
+
+				</div>
+						<div class="form-group">
+					<label for="dni">DNI:</label> <input type="number" min="00000001" max="99999999" title="Solo se admiten numeros"
+						th:field="*{dniDocente}" class="form-control" id="dni"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('dniDocente')}" th:errors="*{dniDocente}"></div>
+
+				</div>
+					<div th:if= "${mensaje eq true}" class="alert alert-danger">DNI YA EXISTE</div>
+		  <div th:if= "${danger eq true}" class="alert alert-success">REGISTRO ASOCIADO</div>
+			
+			<button type="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/docente/listar" class="btn btn-danger">Cancelar</a>
+
+		</form>
+		
+	<div th:replace="fragments/footer :: footer"></div>
+	</div>
+	
+
+</body>
+</html>

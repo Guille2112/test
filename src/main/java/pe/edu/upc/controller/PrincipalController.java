@@ -1,7 +1,6 @@
-	package pe.edu.upc.controller;
+package pe.edu.upc.controller;
 
 import java.util.Map;
-
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,10 +26,10 @@ public class PrincipalController {
 		
 		ModelAndView model=new ModelAndView();
 		if(error!=null) {
-			model.addObject("error","Credenciales Incorrectas");
+			model.addObject("error","Datos Incorrectos");
 		}
 		if(logout!=null) {
-			model.addObject("msg","Sesión Cerrada Correctamente");
+			model.addObject("msg","Se Cerro Sesión");
 		}
 		model.setViewName("login");
 		return model;

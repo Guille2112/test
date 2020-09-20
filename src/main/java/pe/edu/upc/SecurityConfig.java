@@ -29,15 +29,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		try {
 			http.authorizeRequests()
 			.antMatchers("/user/**").access(" hasRole('ROLE_ADMIN')")
-					.antMatchers("/city/**").access(" hasRole('ROLE_ADMIN')")
-					.antMatchers("/country/**").access(" hasRole('ROLE_ADMIN')")
-					.antMatchers("/room/**").access("hasRole('ROLE_ADMIN')")
-					.antMatchers("/checkin/**").access(" hasRole('ROLE_ADMIN')or hasRole('ROLE_RECEPTIONIST')")
-					.antMatchers("/checkout/**").access(" hasRole('ROLE_ADMIN')or hasRole('ROLE_RECEPTIONIST')")
-					.antMatchers("/persona/**").access(" hasRole('ROLE_CLIENTE') or hasRole('ROLE_ADMIN')or hasRole('ROLE_RECEPTIONIST')")
-					.antMatchers("/reservation/**").access(" hasRole('ROLE_CLIENTE') or hasRole('ROLE_ADMIN')or hasRole('ROLE_RECEPTIONIST')")
+					.antMatchers("/alumno/**").access(" hasRole('ROLE_ADMIN')")
+					.antMatchers("/curso/**").access(" hasRole('ROLE_ADMIN')")
+					.antMatchers("/docente/**").access("hasRole('ROLE_ADMIN')")
+					.antMatchers("/matricula/**").access(" hasRole('ROLE_ADMIN')")
+					.antMatchers("/seccion/**").access(" hasRole('ROLE_ADMIN')")
+					.antMatchers("/vermatricula/**").access(" hasRole('ROLE_ADMIN')or hasRole('ROLE_AJUNI')")
 					
-					.antMatchers("/bienvenido").access(" hasRole('ROLE_CLIENTE')  or hasRole('ROLE_ADMIN')or hasRole('ROLE_RECEPTIONIST')")
+					
+					.antMatchers("/bienvenido").access(" hasRole('ROLE_AJUNI')  or hasRole('ROLE_ADMIN')")
 					.and()
 
 					.formLogin().loginPage("/login").loginProcessingUrl("/j_spring_security_check")

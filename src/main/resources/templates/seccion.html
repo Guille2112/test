@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Curso</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link rel="icon" type="image/png" sizes="32x32" href="/imagenes/favicon-32x32.png"/>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/curso/registrar}" method="post" th:object="${seccion}"
+			enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="idSeccion">ID:</label> <input type="text" 
+					class="form-control" th:field="*{idSeccion}" id="idSeccion"></input>
+
+				<div class="form-group">
+					<label for="nombre">SECCION:</label> <input type="text" pattern="[a-zA-Z0-9]+" title="Solo se admiten letras y mun"
+						th:field="*{nameSeccion}" class="form-control" id="nombre"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('nameSeccion')}" th:errors="*{nameSeccion}"></div>
+ 
+					<label for="docente" class=" col-sm-2 col-form-label">DOCENTE: </label> 
+					<select
+						class="form-control" th:field="*{docente.idDocente}">
+						<option th:each="rc: ${listaDocentes}" th:value="${rc.idDocente}"
+							th:text="${rc.nameDocente}"
+							th:selected="(${rc.idDocente} == *{docente.idDocente})"></option>
+					</select>
+						
+						<label for="nombre">NOMBRE CURSO:</label> <input type="text" pattern="[A-Za-z0-9-_-ñ\s]+" title=" solo numero y/o texto"
+						th:field="*{nameCurso}" class="form-control" id="nombre"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('nameCurso')}" th:errors="*{nameCurso}"></div>
+										
+				</div>
+			</div>
+			<div th:if= "${mensaje eq true}" class="alert alert-danger">CURSO YA SE ENCUENTRA REGISTRADA</div>
+		  <div th:if= "${danger eq true}" class="alert alert-success">REGISTRO ASOCIADO</div>
+			<button type="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/docente/listar" class="btn btn-danger">Cancelar</a>
+		</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

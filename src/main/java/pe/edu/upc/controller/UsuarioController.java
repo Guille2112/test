@@ -3,9 +3,7 @@ package pe.edu.upc.controller;
 
 import java.text.ParseException;
 import java.util.Map;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pe.edu.upc.entity.Usuario;
-
 import pe.edu.upc.service.IUsuarioService;
 
 @Controller
